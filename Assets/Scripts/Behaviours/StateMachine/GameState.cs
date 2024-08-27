@@ -1,8 +1,9 @@
-﻿using Controllers;
+﻿using Helpers;
+using UI;
 
 namespace Behaviours
 {
-    internal class GameState : BaseState
+    sealed class GameState : BaseState
     {
         public GameState(GameStateController stateController) : base(stateController)
         {
@@ -11,6 +12,7 @@ namespace Behaviours
 
         public override void EnterState()
         {
+            ScreenInterface.GetInstance().Execute(ScreenTypes.GameMenu);
         }
 
         public override void ExitState()
@@ -22,10 +24,6 @@ namespace Behaviours
         }
 
         public override void LogicUpdate()
-        {
-        }
-
-        private void EndState()
         {
         }
     }

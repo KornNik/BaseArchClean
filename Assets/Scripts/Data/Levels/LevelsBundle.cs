@@ -14,12 +14,26 @@ namespace Data
             if (levelNumber < _levelsDatas.Length)
             {
                 var neededData = _levelsDatas[levelNumber];
+                _levelIndex = levelNumber;
                 return neededData;
             }
             else
             {
-                Debug.LogError($"{this.name} try to access to element that dont exist");
-                return null;
+                throw new System.Exception($"{this.name} try to access to element that dont exist");
+            }
+        }
+        public LevelData GetRandomLevelData()
+        {
+            var random = Random.Range(0, _levelsDatas.Length);
+            var level = _levelsDatas[random];
+            if (level != null)
+            {
+                _levelIndex = random;
+                return level;
+            }
+            else
+            {
+                throw new System.Exception("level is null");
             }
         }
         public LevelData GetCurrentLevelData()
@@ -31,8 +45,7 @@ namespace Data
             }
             else
             {
-                Debug.LogError($"{this.name} try to access to element that dont exist");
-                return null;
+                throw new System.Exception($"{this.name} try to access to element that dont exist");
             }
         }
     }

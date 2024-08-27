@@ -9,7 +9,7 @@ namespace Behaviours
         public void Initialization()
         {
             _components.Add(new CamerasInitializer());
-            _components.Add(new ScreenInitializer());
+            _components.Add(new LevelLoaderInitializer());
             _components.Add(new GameStateControllerInitializer());
 
             foreach (var component in _components)

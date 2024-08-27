@@ -1,4 +1,6 @@
-﻿namespace Behaviours
+﻿using UI;
+
+namespace Behaviours
 {
     internal class PauseState : BaseState
     {
@@ -9,6 +11,7 @@
 
         public override void EnterState()
         {
+            ScreenInterface.GetInstance().Execute(Helpers.ScreenTypes.PauseMenu);
         }
 
         public override void ExitState()

@@ -12,12 +12,11 @@ namespace Helpers
 
         public static Services Instance => _instance.Value;
         public Service<Camera> CameraService { get; private set; }
-        public Service<LevelBahaviour> LevelService { get; private set; }
         public Service<AudioController> AudioController { get; private set; }
         public Service<SettingsController> SettingsController { get; private set; }
         public Service<TimeController> TimeController { get; private set; }
         public Service<DatasBundle> DatasBundle { get; private set; }
-        public Service<LevelController> LevelController { get; private set; }
+        public Service<LevelLoader> LevelLoader { get; private set; }
         public Service<GameStateBehaviour> GameStateBehavior { get; private set; }
 
         public Services()
@@ -28,12 +27,11 @@ namespace Helpers
         private void Initialize()
         {
             CameraService = new Service<Camera>();
-            LevelService = new Service<LevelBahaviour>();
             AudioController = new Service<AudioController>();
             SettingsController = new Service<SettingsController>();
             TimeController = new Service<TimeController>();
             DatasBundle = new Service<DatasBundle>();
-            LevelController = new Service<LevelController>();
+            LevelLoader = new Service<LevelLoader>();
             GameStateBehavior = new Service<GameStateBehaviour>();
         }
 
