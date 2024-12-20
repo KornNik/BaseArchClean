@@ -1,21 +1,40 @@
 ﻿using UnityEngine;
 using Data;
 using Helpers;
+using Behaviours;
 
 namespace Controllers
 {
-    class LevelLoader
+    class LevelLoader : ILevelLoader
     {
         private GameObject _level;
         private LevelData _levelData;
+        private LevelsBundle _levelsBundle;
 
-        private void Awake()
+        private int _levelIndex = 0;
+
+        public LevelLoader()
         {
-
+            _levelsBundle = Services.Instance.DatasBundle.ServicesObject.GetData<LevelsBundle>();
         }
-        public void LoadLevelGame(int index)
+
+        public void LoadLevelByIndex(int index)
         {
             LoadLevelVisuals(index);
+        }
+        public bool LoadNextLevel()
+        {
+            if (!IsLastLevel())
+            {
+                _levelIndex++;
+                LoadLevelByIndex(_levelIndex);
+                return true;
+            }
+            return false;
+        }
+        public void ResetLevels()
+        {
+            _levelIndex = 0;
         }
         public void ClearLevelFull()
         {
@@ -25,11 +44,15 @@ namespace Controllers
                 _level = null;
             }
         }
+        public bool IsLastLevel()
+        {
+            return _levelsBundle.IsLastLevelByIndex(_levelIndex);
+        }
 
         private void LoadLevelVisuals(int index)
         {
-            _levelData = Services.Instance.DatasBundle.ServicesObject.GetData<LevelsBundle>().GetRandomLevelData();
-            _level = GameObject.Instantiate(_levelData.GetPrefab(), _levelData.GetLevelPosition(), Quaternion.identity);
+            _levelData = _levelsBundle.GetRandomLevelData();
+            _level = GameObject.Instantiate(_levelData.LevelPrefab, _levelData.LevelPosition, Quaternion.identity);
             _level.transform.localPosition = Vector3.zero;
             _level.transform.localRotation = Quaternion.identity;
         }

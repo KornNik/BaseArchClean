@@ -1,13 +1,11 @@
 ﻿using UnityEngine;
 using Behaviours;
 using Helpers;
-using Helpers.AssetsPath;
-using Helpers.Extensions;
 using Data;
 
 namespace Controllers
 {
-    sealed class AudioController : MonoBehaviour
+    sealed class AudioController : MonoBehaviour, IAudioPlayer
     {
         private AudioSource _audioSourceBackground;
         private AudioSource _audioSourcePoolablePrefab;
@@ -19,18 +17,21 @@ namespace Controllers
 
         public void Awake()
         {
-            _audioSourceBackground = CustomResources.Load<AudioSource>
-                (AudioAssetPath.AudioPath[AudioTypes.BackgroundSourcePrefab]);
-            _audioSourcePoolablePrefab = CustomResources.Load<AudioSource>
-                (AudioAssetPath.AudioPath[AudioTypes.PoolableSourcePrefab]);
+            _audioSourceBackground = Services.Instance.DatasBundle.ServicesObject.
+                GetData<DataResourcePrefabs>().GetAudioPrefab
+                (AudioTypes.BackgroundSourcePrefab).GetComponent<AudioSource>();
+            _audioSourcePoolablePrefab = Services.Instance.DatasBundle.ServicesObject.
+                GetData<DataResourcePrefabs>().GetAudioPrefab
+                (AudioTypes.PoolableSourcePrefab).GetComponent<AudioSource>();
+
             _audioSourcePool = new AudioSourcePool(_audioSourcePoolablePrefab);
             _audioEventsHandler = new AudioEventsHandler();
             _audioMixerMuter = Services.Instance.DatasBundle.ServicesObject.GetData<AudioMixerVolumeMuter>();
         }
-        
+
         private void Update()
         {
-            if (!_audioSourceBackground.isPlaying && !ReferenceEquals(_audioClip,null))
+            if (!_audioSourceBackground.isPlaying && !ReferenceEquals(_audioClip, null))
             {
                 _audioClip = null;
             }

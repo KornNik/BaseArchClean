@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using Helpers.Extensions;
-using Helpers.AssetsPath;
 using Data;
 using Helpers;
 using Controllers;
@@ -23,8 +21,8 @@ namespace Behaviours
         }
         private void MainCameraInitialization()
         {
-            var mainCameraResource = CustomResources.Load<Camera>(CamerasAssetPath.CamerasPath[CameraTypes.MainCamera]);
-            var mainCameraObject = Object.Instantiate(mainCameraResource, _camerasData.GetMainCameraPosition(), Quaternion.identity);
+            var mainCameraResource = Services.Instance.DatasBundle.ServicesObject.GetData<DataResourcePrefabs>().GetCamerPrefab();
+            var mainCameraObject = Object.Instantiate(mainCameraResource, _camerasData.GetMainCameraPosition(), Quaternion.identity).GetComponent<Camera>();
 
             Services.Instance.CameraService.SetObject(mainCameraObject);
         }

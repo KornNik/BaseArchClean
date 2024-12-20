@@ -1,6 +1,10 @@
-﻿namespace Behaviours
+﻿using Helpers;
+using System;
+
+namespace Behaviours
 {
-    internal class GameStateController : BaseStateController
+    class GameStateController : BaseStateController, IEventListener<ChangeGameStateEvent>,
+        IEventSubscription, IDisposable
     {
         private IState _menuState;
         private IState _pauseState;
@@ -10,6 +14,11 @@
         {
             InitializeStates();
             StartState(MenuState);
+            Subscribe();
+        }
+        public void Dispose()
+        {
+            Unsubscribe();
         }
 
         public IState MenuState => _menuState;
@@ -21,6 +30,35 @@
             _menuState = new MenuState(this);
             _pauseState = new PauseState(this);
             _gameState = new GameState(this);
+        }
+
+
+        public void OnEventTrigger(ChangeGameStateEvent eventType)
+        {
+            switch (eventType.NextGameState)
+            {
+                case GameStateType.None:
+                    throw new System.Exception("State is unknown");
+                case GameStateType.ManuState:
+                    ChangeState(_menuState);
+                    break;
+                case GameStateType.GameState:
+                    ChangeState(_gameState);
+                    break;
+                case GameStateType.PauseState:
+                    ChangeState(_pauseState);
+                    break;
+            }
+        }
+
+        public void Subscribe()
+        {
+            this.EventStartListening<ChangeGameStateEvent>();
+        }
+
+        public void Unsubscribe()
+        {
+            this.EventStopListening<ChangeGameStateEvent>();
         }
     }
 }

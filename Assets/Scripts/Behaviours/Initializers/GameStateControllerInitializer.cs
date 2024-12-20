@@ -1,7 +1,7 @@
-﻿using Controllers;
+﻿using UnityEngine;
+using Controllers;
+using Data;
 using Helpers;
-using Helpers.AssetsPath;
-using Helpers.Extensions;
 
 namespace Behaviours
 {
@@ -9,8 +9,9 @@ namespace Behaviours
     {
         public void Initialization()
         {
-            var gameStateBeh = CustomResources.Load<GameStateBehaviour>(ResourcesPathManager.STATE_BEHAVIOUR);
-            Services.Instance.GameStateBehavior.SetObject(gameStateBeh);
+            var gameStatePrefab = Services.Instance.DatasBundle.ServicesObject.GetData<DataResourcePrefabs>().GetGameStatePrefab();
+            var gameState = GameObject.Instantiate(gameStatePrefab).GetComponent<GameStateBehaviour>();
+            Services.Instance.GameStateBehavior.SetObject(gameState);
         }
     }
 }

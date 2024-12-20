@@ -13,6 +13,7 @@ namespace Behaviours
             _systems.Add(new SettingsInitializer());
             _systems.Add(new TimeInitializer());
             _systems.Add(new AudioInitializer());
+            _systems.Add(new InputItializer());
 
             foreach (var system in _systems)
             {

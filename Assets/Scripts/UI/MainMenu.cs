@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Behaviours;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI
@@ -34,7 +35,7 @@ namespace UI
 
         private void OnStartButtonDown()
         {
-
+            ChangeGameStateEvent.Trigger(GameStateType.GameState);
         }
         private void OnQuitGameButtonDown()
         {

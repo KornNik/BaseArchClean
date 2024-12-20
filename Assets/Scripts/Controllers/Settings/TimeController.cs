@@ -1,15 +1,16 @@
-﻿using UnityEngine;
+﻿using Behaviours;
+using UnityEngine;
 
 namespace Controllers
 {
-    class TimeController
+    class TimeController : ITimeController
     {
         private const float DEFAULT_PAUSE_TIME_VALUE = 0f;
         private const float DEFAULT_NORMAL_TIME_VALUE = 1f;
 
         public TimeController()
         {
-            ResumeTime();
+
         }
 
         public void PauseTime()

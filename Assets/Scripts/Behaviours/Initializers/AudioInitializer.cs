@@ -1,8 +1,7 @@
 ﻿using Helpers;
-using Helpers.Extensions;
-using Helpers.AssetsPath;
 using Controllers;
 using UnityEngine;
+using Data;
 
 namespace Behaviours
 {
@@ -10,10 +9,11 @@ namespace Behaviours
     {
         public void Initialization()
         {
-            var audioController = GameObject.Instantiate(CustomResources.Load<AudioController>
-                (AudioAssetPath.AudioPath[AudioTypes.AudioController]));
+            var audioControllerPrefab = Services.Instance.DatasBundle.ServicesObject.
+                GetData<DataResourcePrefabs>().GetScreenPrefab(ScreenTypes.Canvas);
+            var audioController = GameObject.Instantiate(audioControllerPrefab).GetComponent<AudioController>();
 
-            Services.Instance.AudioController.SetObject(audioController);
+            Services.Instance.AudioPlayer.SetObject(audioController);
         }
     }
 }

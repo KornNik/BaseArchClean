@@ -9,17 +9,8 @@ namespace Data
         [SerializeField] private GameObject _levelPrefab;
         [SerializeField] private Vector3 _levelPosition;
 
-        public string GetName()
-        {
-            return _name;
-        }
-        public GameObject GetPrefab()
-        {
-            return _levelPrefab;
-        }
-        public Vector3 GetLevelPosition()
-        {
-            return _levelPosition;
-        }
+        public GameObject LevelPrefab => _levelPrefab;
+        public Vector3 LevelPosition => _levelPosition;
+        public string Name => _name;
     }
 }

@@ -1,39 +1,43 @@
 ﻿using Helpers;
+using System;
 
 namespace Behaviours
 {
-    class AudioEventsHandler : IEventListener<MakeSoundEvent>, IEventListener<MuteSoundEvent>
+    class AudioEventsHandler : IEventListener<MakeSoundEvent>, IEventListener<MuteSoundEvent>, IEventSubscription, IDisposable
     {
+        private IAudioPlayer _audioPlayer;
+
         public AudioEventsHandler()
         {
-            StartListening();
+            Subscribe();
+            _audioPlayer = Services.Instance.AudioPlayer.ServicesObject;
         }
 
-        ~AudioEventsHandler()
+        public void Dispose()
         {
-            StopListening();
+            Unsubscribe();
         }
 
-        public void StartListening()
+        public void OnEventTrigger(MakeSoundEvent eventType)
+        {
+            _audioPlayer.PlaySound(eventType.SoundData);
+        }
+
+        public void OnEventTrigger(MuteSoundEvent eventType)
+        {
+            _audioPlayer.SetSoundStatus(eventType.MutedInfo.IsMuted);
+        }
+
+        public void Subscribe()
         {
             this.EventStartListening<MakeSoundEvent>();
             this.EventStartListening<MuteSoundEvent>();
         }
 
-        public void StopListening()
+        public void Unsubscribe()
         {
             this.EventStopListening<MakeSoundEvent>();
             this.EventStopListening<MuteSoundEvent>();
-        }
-
-        public void OnEventTrigger(MakeSoundEvent eventType)
-        {
-            Services.Instance.AudioController.ServicesObject.PlaySound(eventType.SoundData);
-        }
-
-        public void OnEventTrigger(MuteSoundEvent eventType)
-        {
-            Services.Instance.AudioController.ServicesObject.SetSoundStatus(eventType.MutedInfo.IsMuted);
         }
     }
 }
