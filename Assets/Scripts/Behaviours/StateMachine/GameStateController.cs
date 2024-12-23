@@ -1,19 +1,19 @@
 ﻿using Helpers;
 using System;
+using System.Collections.Generic;
 
 namespace Behaviours
 {
     class GameStateController : BaseStateController, IEventListener<ChangeGameStateEvent>,
         IEventSubscription, IDisposable
     {
-        private IState _menuState;
-        private IState _pauseState;
-        private IState _gameState;
+
+        private Dictionary<GameStateType, IState> _states = new Dictionary<GameStateType, IState>(5);
 
         public GameStateController()
         {
             InitializeStates();
-            StartState(MenuState);
+            StartState(GetState(GameStateType.MenuState));
             Subscribe();
         }
         public void Dispose()
@@ -21,34 +21,29 @@ namespace Behaviours
             Unsubscribe();
         }
 
-        public IState MenuState => _menuState;
-        public IState PauseState => _pauseState;
-        public IState GameState => _gameState;
-
         protected override void InitializeStates()
         {
-            _menuState = new MenuState(this);
-            _pauseState = new PauseState(this);
-            _gameState = new GameState(this);
+            _states.Clear();
+            _states.Add(GameStateType.MenuState, new MenuState(this));
+            _states.Add(GameStateType.PauseState, new PauseState(this));
+            _states.Add(GameStateType.GameState, new GameState(this));
+            _states.Add(GameStateType.ExitLevelState, new ExitLevelState(this));
+            _states.Add(GameStateType.LoadLevelState, new LoadLevelState(this));
         }
 
 
         public void OnEventTrigger(ChangeGameStateEvent eventType)
         {
-            switch (eventType.NextGameState)
+            ChangeState(GetState(eventType.NextGameState));
+        }
+        private IState GetState(GameStateType gameState)
+        {
+            if (_states.ContainsKey(gameState))
             {
-                case GameStateType.None:
-                    throw new System.Exception("State is unknown");
-                case GameStateType.ManuState:
-                    ChangeState(_menuState);
-                    break;
-                case GameStateType.GameState:
-                    ChangeState(_gameState);
-                    break;
-                case GameStateType.PauseState:
-                    ChangeState(_pauseState);
-                    break;
+                var state = _states[gameState];
+                return state;
             }
+            return null;
         }
 
         public void Subscribe()

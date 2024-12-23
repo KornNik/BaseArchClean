@@ -5,9 +5,11 @@ namespace Behaviours
     enum GameStateType
     {
         None,
-        ManuState,
+        MenuState,
         PauseState,
-        GameState
+        GameState,
+        ExitLevelState,
+        LoadLevelState
     }
     struct ChangeGameStateEvent
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Controllers
 {
-    sealed class Task : ITask
+    sealed class TaskCustom : ITask
     {
         private TaskPriorityEnum _taskPriority = TaskPriorityEnum.Default;
 
@@ -13,7 +13,7 @@ namespace Controllers
         private Coroutine _coroutine;
         private IEnumerator _taskAction;
 
-        public Task(IEnumerator taskAction, TaskPriorityEnum priority = TaskPriorityEnum.Default)
+        public TaskCustom(IEnumerator taskAction, TaskPriorityEnum priority = TaskPriorityEnum.Default)
         {
             ///Получить монобех для корутины
             _taskPriority = priority;
@@ -22,9 +22,9 @@ namespace Controllers
 
         public TaskPriorityEnum Priority => _taskPriority;
 
-        public static Task Create(IEnumerator taskAction, TaskPriorityEnum priority = TaskPriorityEnum.Default)
+        public static TaskCustom Create(IEnumerator taskAction, TaskPriorityEnum priority = TaskPriorityEnum.Default)
         {
-            return new Task(taskAction, priority);
+            return new TaskCustom(taskAction, priority);
         }
 
         public void Start()

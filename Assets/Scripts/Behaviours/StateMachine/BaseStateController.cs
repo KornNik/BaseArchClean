@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Behaviours
 {
@@ -16,8 +17,7 @@ namespace Behaviours
 
         protected virtual void StartState(IState startingState)
         {
-            _currentState = startingState;
-            startingState.EnterState();
+            ChangeState(startingState);
         }
 
         public void ChangeState(IState newState)
@@ -30,14 +30,11 @@ namespace Behaviours
             {
                 _currentState.ExitState();
             }
-            else
-            {
-                throw new Exception($"{this} try to access current state that is equal null");
-            }
 
             _previousState = _currentState;
             _currentState = newState;
             _currentState.EnterState();
+            Debug.Log($"Current State is {_currentState}");
         }
 
         public void Update()

@@ -1,13 +1,15 @@
 ﻿using Helpers;
+using System.Threading.Tasks;
 
 namespace Behaviours
 {
-    sealed class LevelLoaderInitializer : IInitialization
+    sealed class LevelLoaderInitializerAsync : IInitializationAsync
     {
-        public void Initialization()
+        public async Task InitializationAsync()
         {
             var lelveLoader = new LevelLoader();
             Services.Instance.LevelLoader.SetObject(lelveLoader);
+            await Task.Yield();
         }
     }
 }

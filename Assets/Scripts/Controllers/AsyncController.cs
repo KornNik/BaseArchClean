@@ -8,14 +8,14 @@ namespace Controllers
     {
         private const int DEFAULT_LIST_VALUE = 6;
 
-        private List<Task> _tasks;
+        private List<TaskCustom> _tasks;
 
         private AsyncController()
         {
-            _tasks = new List<Task>(DEFAULT_LIST_VALUE);
+            _tasks = new List<TaskCustom>(DEFAULT_LIST_VALUE);
         }
         
-        public void StartTask(Task task)
+        public void StartTask(TaskCustom task)
         {
             if (!_tasks.Contains(task))
             {
@@ -26,7 +26,7 @@ namespace Controllers
                 task.Start();
             }
         }
-        public void RemoveCoroutine(Task task)
+        public void RemoveCoroutine(TaskCustom task)
         {
             if (_tasks.Contains(task))
             {

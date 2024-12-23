@@ -1,16 +1,20 @@
-﻿using UnityEngine;
-using Data;
+﻿using Data;
 using Helpers;
+using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Behaviours
 {
-    class GameStateControllerInitializer : IInitialization
+    sealed class GameStateInitializerAsync : IInitializationAsync
     {
-        public void Initialization()
+
+        public async Task InitializationAsync()
         {
             var gameStatePrefab = Services.Instance.DatasBundle.ServicesObject.GetData<DataResourcePrefabs>().GetGameStatePrefab();
             var gameState = GameObject.Instantiate(gameStatePrefab).GetComponent<GameStateBehaviour>();
             Services.Instance.GameStateBehavior.SetObject(gameState);
+
+            await Task.Yield();
         }
     }
 }

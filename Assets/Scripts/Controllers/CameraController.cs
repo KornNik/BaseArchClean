@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Controllers
 {
-    internal class CameraController : MonoBehaviour, IInitialization
+    internal class CameraController : MonoBehaviour
     {
         private CameraModel _cameraModel;
         private CameraMovement _cameraMovement;

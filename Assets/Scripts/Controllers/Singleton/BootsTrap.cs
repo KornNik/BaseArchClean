@@ -5,8 +5,8 @@ namespace Controllers
 {
     sealed class BootsTrap : PersistanceSingleton<BootsTrap>
     {
-        private SystemsInitializer _systemsInitializer;
-        private ComponentsInitializer _componentsInitializer;
+        private IInitialization _systemsInitializer;
+        private IInitialization _componentsInitializer;
 
         private void Start()
         {

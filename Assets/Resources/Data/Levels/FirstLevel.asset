@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: FirstLevel
   m_EditorClassIdentifier: 
   _name: First
-  _levelPrefab: {fileID: 0}
+  _levelPrefab: {fileID: 4308619215977142359, guid: 149d3adf10afbfe479ae58ae0340a703, type: 3}
   _levelPosition: {x: 0, y: 0, z: 0}

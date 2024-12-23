@@ -1,4 +1,4 @@
-﻿using Controllers;
+﻿using Behaviours;
 using UnityEngine;
 
 namespace Inputs

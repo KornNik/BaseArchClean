@@ -1,16 +1,20 @@
-﻿using UnityEngine;
-using Data;
+﻿using Data;
 using Helpers;
+using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Behaviours
 {
-   sealed class CamerasInitializer : IInitialization
+    sealed class CameraInitializerAsync : IInitializationAsync
     {
         private CamerasInitilaizationData _camerasData;
-        public void Initialization()
+
+        public async Task InitializationAsync()
         {
             CamerasDataInitialization();
             MainCameraInitialization();
+
+            await Task.Yield();
         }
 
         private void CamerasDataInitialization()
@@ -21,7 +25,7 @@ namespace Behaviours
         private void MainCameraInitialization()
         {
             var mainCameraResource = Services.Instance.DatasBundle.ServicesObject.GetData<DataResourcePrefabs>().GetCamerPrefab();
-            var mainCameraObject = Object.Instantiate(mainCameraResource, _camerasData.GetMainCameraPosition(), Quaternion.identity).GetComponent<Camera>();
+            var mainCameraObject = GameObject.Instantiate(mainCameraResource, _camerasData.GetMainCameraPosition(), Quaternion.identity).GetComponent<Camera>();
 
             Services.Instance.CameraService.SetObject(mainCameraObject);
         }

@@ -1,4 +1,4 @@
-﻿using Controllers;
+﻿using Behaviours;
 
 namespace Helpers
 {

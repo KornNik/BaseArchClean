@@ -1,14 +1,17 @@
 ﻿using Helpers;
+using System.Threading.Tasks;
 using Controllers;
 
 namespace Behaviours
 {
-    class SettingsInitializer : IInitialization
+    sealed class SettingsInitializerAsync : IInitializationAsync
     {
-        public void Initialization()
+        public async Task InitializationAsync()
         {
             var settings = new SettingsController();
             Services.Instance.SettingsController.SetObject(settings);
+
+            await Task.Yield();
         }
     }
 }

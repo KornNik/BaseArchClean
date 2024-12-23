@@ -14,7 +14,7 @@ namespace Controllers
 
         public void AddTask(IEnumerator taskAction, Action callback, TaskPriorityEnum taskPriority = TaskPriorityEnum.Default)
         {
-            var task = Task.Create(taskAction, taskPriority).Subscribe(callback);
+            var task = TaskCustom.Create(taskAction, taskPriority).Subscribe(callback);
 
             ProcessingAddedTask(task, taskPriority);
         }

@@ -1,18 +1,21 @@
-﻿using Helpers;
-using Helpers.Extensions;
+﻿using Data;
 using Helpers.AssetsPath;
-using Data;
+using Helpers.Extensions;
+using Helpers;
+using System.Threading.Tasks;
 
 namespace Behaviours
 {
-    sealed class DataInitializer : IInitialization
+    sealed class DataInitializerAsync : IInitializationAsync
     {
         private DatasBundle _datasBundle;
-        
-        public void Initialization()
+
+        public async Task InitializationAsync()
         {
             _datasBundle = CustomResources.Load<DatasBundle>(DatasAssetPath.DatasPath[DataTypes.BundleData]);
             Services.Instance.DatasBundle.SetObject(_datasBundle);
+
+            await Task.Yield();
         }
     }
 }

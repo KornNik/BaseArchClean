@@ -35,7 +35,7 @@ namespace UI
 
         private void OnStartButtonDown()
         {
-            ChangeGameStateEvent.Trigger(GameStateType.GameState);
+            ChangeGameStateEvent.Trigger(GameStateType.LoadLevelState);
         }
         private void OnQuitGameButtonDown()
         {

@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using Data;
 using Helpers;
-using Behaviours;
 
-namespace Controllers
+namespace Behaviours
 {
     class LevelLoader : ILevelLoader
     {
