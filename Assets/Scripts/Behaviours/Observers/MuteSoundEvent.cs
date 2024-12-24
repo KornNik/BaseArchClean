@@ -15,7 +15,7 @@ namespace Behaviours
 
         public static void Trigger(MutedInfo mutedInfo)
         {
-            _muteSoundEvent._mutedInfo.IsMuted = mutedInfo.IsMuted;
+            _muteSoundEvent._mutedInfo = mutedInfo;
             EventManager.TriggerEvent(_muteSoundEvent);
         }
     }

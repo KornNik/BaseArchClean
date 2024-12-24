@@ -7,34 +7,44 @@ namespace Controllers
 {
     sealed class AudioController : MonoBehaviour, IAudioPlayer
     {
-        private AudioSource _audioSourceBackground;
         private AudioSource _audioSourcePoolablePrefab;
         private AudioMixerVolumeMuter _audioMixerMuter;
 
-        private AudioClip _audioClip;
         private AudioSourcePool _audioSourcePool;
         private AudioEventsHandler _audioEventsHandler;
 
+        private EventSubscriptionWraper _eventSubscriptionWrapper;
+
         public void Awake()
         {
-            _audioSourceBackground = Services.Instance.DatasBundle.ServicesObject.
-                GetData<DataResourcePrefabs>().GetAudioPrefab
-                (AudioTypes.BackgroundSourcePrefab).GetComponent<AudioSource>();
+            Initialize();
+            FillSubscriptions();
+        }
+        private void OnEnable()
+        {
+            _eventSubscriptionWrapper.Subscribe();
+        }
+        private void OnDisable()
+        {
+            _eventSubscriptionWrapper.Unsubscribe();
+        }
+
+        private void Initialize()
+        {
             _audioSourcePoolablePrefab = Services.Instance.DatasBundle.ServicesObject.
                 GetData<DataResourcePrefabs>().GetAudioPrefab
                 (AudioTypes.PoolableSourcePrefab).GetComponent<AudioSource>();
 
+            _audioMixerMuter = Services.Instance.DatasBundle.ServicesObject.
+                GetData<AudioMixerVolumeMuter>();
+
             _audioSourcePool = new AudioSourcePool(_audioSourcePoolablePrefab);
             _audioEventsHandler = new AudioEventsHandler();
-            _audioMixerMuter = Services.Instance.DatasBundle.ServicesObject.GetData<AudioMixerVolumeMuter>();
+            _eventSubscriptionWrapper = new EventSubscriptionWraper();
         }
-
-        private void Update()
+        private void FillSubscriptions()
         {
-            if (!_audioSourceBackground.isPlaying && !ReferenceEquals(_audioClip, null))
-            {
-                _audioClip = null;
-            }
+            _eventSubscriptionWrapper.AddEvent(_audioEventsHandler);
         }
 
         public void PlaySound(SoundEventInfo soudnInfo)

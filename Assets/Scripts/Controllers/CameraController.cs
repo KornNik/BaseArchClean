@@ -8,11 +8,10 @@ namespace Controllers
         private CameraModel _cameraModel;
         private CameraMovement _cameraMovement;
 
-        public void Initialization()
+        public void Awake()
         {
             _cameraModel = new CameraModel();
             _cameraMovement = new CameraMovement();
-            _cameraModel.Initialization();
         }
 
         public void LateUpdate()

@@ -12,16 +12,20 @@ namespace Behaviours
     }
     sealed class SettingsPanelTween
     {
-        readonly Vector2 InAnchorMin = new Vector2(0.0f, 0f);
-        readonly Vector2 InAnchorMax = new Vector2(1.0f, 1f);
-        readonly Vector2 OutAnchorMin = new Vector2(0.0f, 1.0f);
-        readonly Vector2 OutAnchorMax = new Vector2(1.0f, 1.0f);
+        private readonly Vector2 InAnchorMin = new Vector2(0.0f, 0f);
+        private readonly Vector2 InAnchorMax = new Vector2(1.0f, 1f);
+        private readonly Vector2 OutAnchorMin = new Vector2(0.0f, 1.0f);
+        private readonly Vector2 OutAnchorMax = new Vector2(1.0f, 1.0f);
 
-        readonly RectTransform _moveRoot;
+        private readonly Ease _moveEase;
+        private readonly RectTransform _moveRoot;
+        private readonly float _totalMoveDuration;
 
-        public SettingsPanelTween(RectTransform moveRoot)
+        public SettingsPanelTween(RectTransform moveRoot, float totalMoveDuration, Ease moveEase)
         {
             _moveRoot = moveRoot;
+            _moveEase = moveEase;
+            _totalMoveDuration = totalMoveDuration;
         }
 
         public void GoToEnd(MoveMode mode)
@@ -60,11 +64,9 @@ namespace Behaviours
                     break;
             }
 
-            const float totalMoveDuration = 0.5f;
-            const Ease moveEase = Ease.InExpo;
             return DOTween.Sequence()
-                .Append(_moveRoot.DOAnchorMin(anchorMin, totalMoveDuration * timeScale).SetEase(moveEase))
-                .Join(_moveRoot.DOAnchorMax(anchorMax, totalMoveDuration * timeScale).SetEase(moveEase));
+                .Append(_moveRoot.DOAnchorMin(anchorMin, _totalMoveDuration * timeScale).SetEase(_moveEase))
+                .Join(_moveRoot.DOAnchorMax(anchorMax, _totalMoveDuration * timeScale).SetEase(_moveEase));
         }
     }
 }

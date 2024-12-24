@@ -29,10 +29,7 @@ namespace Behaviours
 
         public static void Trigger(SoundEventInfo soundData)
         {
-            _soundEvent._soundData.AudioClip = soundData.AudioClip;
-            _soundEvent._soundData.SoundVolume = soundData.SoundVolume;
-            _soundEvent._soundData.IsOneShot = soundData.IsOneShot;
-            _soundEvent._soundData.PlayPosition = soundData.PlayPosition;
+            _soundEvent._soundData = soundData;
             EventManager.TriggerEvent(_soundEvent);
         }
     }

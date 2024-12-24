@@ -33,6 +33,11 @@ namespace Behaviours
             _events.Add(eventSubscription);
             return this;
         }
+        public EventSubscriptionWraper RemoveEvent(IEventSubscription eventSubscription)
+        {
+            _events.Remove(eventSubscription);
+            return this;
+        }
 
         private bool IsHasEvents()
         {

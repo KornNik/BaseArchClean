@@ -3,8 +3,6 @@
     enum DataTypes
     {
         None,
-        LevelData,
-        CameraData,
         BundleData
     }
 }

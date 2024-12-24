@@ -1,9 +1,10 @@
 ﻿using DG.Tweening;
+using System;
 using System.Linq;
 
 namespace Behaviours
 {
-    sealed class SequenceSettings
+    sealed class SequenceSettings : IDisposable
     {
         private Sequence _sequence;
         private SettingsPanelTween _panel;
@@ -12,6 +13,11 @@ namespace Behaviours
         public SequenceSettings(SettingsPanelTween panel)
         {
             _panel = panel;
+        }
+
+        public void Dispose()
+        {
+            _sequence.Kill();
         }
 
         public Sequence Move(MoveMode mode)

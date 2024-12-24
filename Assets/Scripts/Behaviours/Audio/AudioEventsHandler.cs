@@ -1,21 +1,15 @@
 ﻿using Helpers;
-using System;
 
 namespace Behaviours
 {
-    class AudioEventsHandler : IEventListener<MakeSoundEvent>, IEventListener<MuteSoundEvent>, IEventSubscription, IDisposable
+    class AudioEventsHandler : IEventListener<MakeSoundEvent>, IEventListener<MuteSoundEvent>,
+        IEventSubscription
     {
         private IAudioPlayer _audioPlayer;
 
         public AudioEventsHandler()
         {
-            Subscribe();
             _audioPlayer = Services.Instance.AudioPlayer.ServicesObject;
-        }
-
-        public void Dispose()
-        {
-            Unsubscribe();
         }
 
         public void OnEventTrigger(MakeSoundEvent eventType)

@@ -5,17 +5,16 @@ namespace UI
 {
     sealed class FadeText : DotweenUIEffect
     {
-        TMP_Text _text;
-        public FadeText(float fadeDuration, TMP_Text text) : base(fadeDuration)
+        private readonly TMP_Text _text;
+        public FadeText(float fadeDuration, Ease easeType, TMP_Text text) : base(fadeDuration, easeType)
         {
-            _effectDuration = fadeDuration;
             _text = text;
         }
 
-        public override Sequence CreateTweenActions()
+        public override Sequence CreateTweenActions(Ease easeType)
         {
             _text.alpha = 0f;
-            _sequence.Append(_text.DOFade(1.0f, _effectDuration));
+            _sequence.Append(_text.DOFade(1.0f, _effectDuration).SetEase(easeType));
             return _sequence;
         }
     }
