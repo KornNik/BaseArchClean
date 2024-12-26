@@ -16,3 +16,8 @@ MonoBehaviour:
     m_keys: 01000000
     m_values:
     - {fileID: 11400000, guid: 9a30159f8d65e04489fcbf9142371326, type: 2}
+  _anchorsSettings:
+    m_keys: 0100000002000000
+    m_values:
+    - {fileID: 11400000, guid: 00b67656c16a1f340b814714c661100f, type: 2}
+    - {fileID: 11400000, guid: a8bb6d1a8f6e48a42b949bce241e6254, type: 2}

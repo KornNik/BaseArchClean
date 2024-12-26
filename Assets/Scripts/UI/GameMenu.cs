@@ -1,8 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Events;
-
-namespace UI
+﻿namespace UI
 {
     class GameMenu : BaseUI
     {

@@ -14,7 +14,7 @@ namespace UI
             _elementTransform = elementTransform;
         }
 
-        public override Sequence CreateTweenActions(Ease easeType)
+        protected override Sequence CreateTweenActions(Ease easeType)
         {
             _sequence.Append(_elementTransform.DOScale(_effectIntensive, _effectDuration / 2).SetEase(easeType));
             _sequence.Append(_elementTransform.DOScale(1f, _effectDuration / 2).SetEase(Ease.Linear));

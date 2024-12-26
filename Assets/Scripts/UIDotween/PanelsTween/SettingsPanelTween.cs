@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using DG.Tweening;
+using Data;
 
 namespace Behaviours
 {
@@ -12,20 +13,18 @@ namespace Behaviours
     }
     sealed class SettingsPanelTween
     {
-        private readonly Vector2 InAnchorMin = new Vector2(0.0f, 0f);
-        private readonly Vector2 InAnchorMax = new Vector2(1.0f, 1f);
-        private readonly Vector2 OutAnchorMin = new Vector2(0.0f, 1.0f);
-        private readonly Vector2 OutAnchorMax = new Vector2(1.0f, 1.0f);
+        private readonly ScreenAnchors _screenAnchors;
 
         private readonly Ease _moveEase;
         private readonly RectTransform _moveRoot;
         private readonly float _totalMoveDuration;
 
-        public SettingsPanelTween(RectTransform moveRoot, float totalMoveDuration, Ease moveEase)
+        public SettingsPanelTween(RectTransform moveRoot, float totalMoveDuration, Ease moveEase, ScreenAnchors screenAnchors)
         {
             _moveRoot = moveRoot;
             _moveEase = moveEase;
             _totalMoveDuration = totalMoveDuration;
+            _screenAnchors = screenAnchors;
         }
 
         public void GoToEnd(MoveMode mode)
@@ -33,12 +32,12 @@ namespace Behaviours
             switch (mode)
             {
                 case MoveMode.Show:
-                    _moveRoot.anchorMin = InAnchorMin;
-                    _moveRoot.anchorMax = InAnchorMax;
+                    _moveRoot.anchorMin = _screenAnchors.InAnchorMin;
+                    _moveRoot.anchorMax = _screenAnchors.InAnchorMax;
                     break;
                 case MoveMode.Hide:
-                    _moveRoot.anchorMin = OutAnchorMin;
-                    _moveRoot.anchorMax = OutAnchorMax;
+                    _moveRoot.anchorMin = _screenAnchors.OutAnchorMin;
+                    _moveRoot.anchorMax = _screenAnchors.OutAnchorMax;
                     break;
                 default:
                     break;
@@ -53,12 +52,12 @@ namespace Behaviours
             switch (mode)
             {
                 case MoveMode.Show:
-                    anchorMin = InAnchorMin;
-                    anchorMax = InAnchorMax;
+                    anchorMin = _screenAnchors.InAnchorMin;
+                    anchorMax = _screenAnchors.InAnchorMax;
                     break;
                 case MoveMode.Hide:
-                    anchorMin = OutAnchorMin;
-                    anchorMax = OutAnchorMax;
+                    anchorMin = _screenAnchors.OutAnchorMin;
+                    anchorMax = _screenAnchors.OutAnchorMax;
                     break;
                 default:
                     break;

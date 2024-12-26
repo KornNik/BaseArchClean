@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Data;
+using Helpers;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Behaviours
@@ -13,6 +15,12 @@ namespace Behaviours
 
         private int _lastCheckFrame = -1;
 
+        public AudioSourcePool()
+        {
+            _prefab = Services.Instance.DatasBundle.ServicesObject.
+                GetData<DataResourcePrefabs>().GetAudioPrefab
+                (AudioTypes.PoolableSourcePrefab).GetComponent<AudioSource>();
+        }
         public AudioSourcePool(AudioSource prefab)
         {
             _prefab = prefab;

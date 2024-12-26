@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 using Data;
 using Helpers;
 using Behaviours;
@@ -15,22 +14,23 @@ namespace UI
 
         private RectTransform _rectTransform;
         private CanvasGroup _canvasGroup;
-        private SettingsPanelTween _panelTween;
-        private SequenceSettings _sequenceSettings;
-        private DotweenUIEffect _tweenUIEffect;
-        private TweenSettings _tweenSettings;
+        private DefaultScreenTweens _screenTweens;
 
         protected override void Awake()
         {
             base.Awake();
-            _tweenSettings = Services.Instance.DatasBundle.ServicesObject.GetData<TweensSettingsBundle>().
+
+            var tweenSettings = Services.Instance.DatasBundle.ServicesObject.
+                GetData<TweensSettingsBundle>().
                 GetTweenSettings(TweenSettingsType.ScreenDefaultSettings);
+            var anchorsSettings = Services.Instance.DatasBundle.ServicesObject.
+                GetData<TweensSettingsBundle>().GetAnchorsSettings(ScreenAnchorsTweenType.TopToBottom);
+
             _rectTransform = GetComponent<RectTransform>();
             _canvasGroup = GetComponent<CanvasGroup>();
 
-            _panelTween = new SettingsPanelTween(_rectTransform, _tweenSettings.Duration, _tweenSettings.EaseType);
-            _sequenceSettings = new SequenceSettings(_panelTween);
-            _tweenUIEffect = new FadeElement(_tweenSettings.Duration, _tweenSettings.EaseType, _canvasGroup);
+            _screenTweens = new DefaultScreenTweens(_rectTransform, _canvasGroup,
+                tweenSettings, anchorsSettings, this.gameObject);
         }
 
         private void OnEnable()
@@ -47,22 +47,18 @@ namespace UI
 
         private void OnDestroy()
         {
-            _tweenUIEffect.Dispose();
-            _sequenceSettings.Dispose();
+            _screenTweens.Dispose();
         }
 
         public override void Show()
         {
             gameObject.SetActive(true);
             ShowUI.Invoke();
-
-            _panelTween.GoToEnd(MoveMode.Hide);
-            _sequenceSettings.Move(MoveMode.Show);
-            _tweenUIEffect.DoEffect();
+            _screenTweens.Show();
         }
         public override void Hide()
         {
-            _sequenceSettings.Move(MoveMode.Hide).AppendCallback(() => gameObject.SetActive(false));
+            _screenTweens.Hide();
             HideUI.Invoke();
         }
 

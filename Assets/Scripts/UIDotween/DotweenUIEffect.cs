@@ -18,6 +18,7 @@ namespace UI
         public void Dispose()
         {
             _sequence.Kill(true);
+           _sequence = null;
         }
 
         public virtual void DoEffect()
@@ -30,7 +31,7 @@ namespace UI
             _sequence = DOTween.Sequence();
             CreateTweenActions(_easeType).OnComplete(() => actionOnComplete.Invoke());
         }
-        public abstract Sequence CreateTweenActions(Ease easeType);
+        protected abstract Sequence CreateTweenActions(Ease easeType);
     }
 }
 

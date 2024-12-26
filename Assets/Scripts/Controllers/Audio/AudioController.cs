@@ -7,11 +7,11 @@ namespace Controllers
 {
     sealed class AudioController : MonoBehaviour, IAudioPlayer
     {
-        private AudioSource _audioSourcePoolablePrefab;
         private AudioMixerVolumeMuter _audioMixerMuter;
 
         private AudioSourcePool _audioSourcePool;
         private AudioEventsHandler _audioEventsHandler;
+        private BackgroundMusic _backgroundMusic;
 
         private EventSubscriptionWraper _eventSubscriptionWrapper;
 
@@ -31,14 +31,11 @@ namespace Controllers
 
         private void Initialize()
         {
-            _audioSourcePoolablePrefab = Services.Instance.DatasBundle.ServicesObject.
-                GetData<DataResourcePrefabs>().GetAudioPrefab
-                (AudioTypes.PoolableSourcePrefab).GetComponent<AudioSource>();
-
             _audioMixerMuter = Services.Instance.DatasBundle.ServicesObject.
                 GetData<AudioMixerVolumeMuter>();
 
-            _audioSourcePool = new AudioSourcePool(_audioSourcePoolablePrefab);
+            _audioSourcePool = new AudioSourcePool();
+            _backgroundMusic = new BackgroundMusic();
             _audioEventsHandler = new AudioEventsHandler();
             _eventSubscriptionWrapper = new EventSubscriptionWraper();
         }
@@ -57,6 +54,10 @@ namespace Controllers
             {
                 _audioSourcePool.PlayAtPoint(soudnInfo.AudioClip, soudnInfo.PlayPosition, soudnInfo.SoundVolume);
             }
+        }
+        public void PlayBackgroundMusic(AudioClip backgroundMusic)
+        {
+            _backgroundMusic.StartPlayingMusic(backgroundMusic);
         }
 
         public void SwitchMutedState()

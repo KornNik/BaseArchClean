@@ -11,7 +11,7 @@ namespace UI
             _text = text;
         }
 
-        public override Sequence CreateTweenActions(Ease easeType)
+        protected override Sequence CreateTweenActions(Ease easeType)
         {
             _text.alpha = 0f;
             _sequence.Append(_text.DOFade(1.0f, _effectDuration).SetEase(easeType));
