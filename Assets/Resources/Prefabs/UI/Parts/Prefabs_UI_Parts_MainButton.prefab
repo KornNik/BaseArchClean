@@ -31,7 +31,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4497109156367831184}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -147,7 +146,7 @@ GameObject:
   - component: {fileID: 5012589140243048123}
   - component: {fileID: 2034639145490127874}
   - component: {fileID: 2199619410638646374}
-  - component: {fileID: 5898259659435610717}
+  - component: {fileID: 1087348403389886458}
   m_Layer: 5
   m_Name: Prefabs_UI_Parts_MainButton
   m_TagString: Untagged
@@ -169,7 +168,6 @@ RectTransform:
   m_Children:
   - {fileID: 8697482383580619209}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -258,7 +256,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5898259659435610717
+--- !u!114 &1087348403389886458
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -267,8 +265,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 6903441527001909093}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a532bfaefd3b83849974924ef4e3e659, type: 3}
+  m_Script: {fileID: 11500000, guid: b5b61517325611649bf6fc344d695c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clickClip: {fileID: 8300000, guid: c461b547b9c507c42b617904589eaa13, type: 3}
   _extendedButton: {fileID: 2199619410638646374}
+  _clickClip: {fileID: 8300000, guid: 2be9c41ad5011f6428b4cd5e32f630f7, type: 3}

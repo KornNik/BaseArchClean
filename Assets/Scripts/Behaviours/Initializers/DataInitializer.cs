@@ -13,6 +13,7 @@ namespace Behaviours
         {
             _datasBundle = CustomResources.Load<DatasBundle>(DatasAssetPath.DatasPath[DataTypes.BundleData]);
             Services.Instance.DatasBundle.SetObject(_datasBundle);
+            Services.Instance.DataResourcePrefabs.SetObject(_datasBundle.GetData<DataResourcePrefabs>());
         }
     }
 }

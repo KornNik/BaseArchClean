@@ -14,7 +14,7 @@ namespace Behaviours
 
         public LevelLoader()
         {
-            _levelsBundle = Services.Instance.DatasBundle.ServicesObject.GetData<LevelsBundle>();
+            _levelsBundle = Services.Instance.DataResourcePrefabs.ServicesObject.GetLevelsBundle();
         }
 
         public void LoadLevelByIndex(int index)

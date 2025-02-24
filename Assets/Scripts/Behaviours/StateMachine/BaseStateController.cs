@@ -30,7 +30,10 @@ namespace Behaviours
             {
                 _currentState.ExitState();
             }
-
+            else
+            {
+                _previousState = newState;
+            }
             _previousState = _currentState;
             _currentState = newState;
             _currentState.EnterState();

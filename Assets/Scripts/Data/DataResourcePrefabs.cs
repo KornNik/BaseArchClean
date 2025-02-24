@@ -10,6 +10,7 @@ namespace Data
     {
         [SerializeField] private GameObject _cameraPrefab;
         [SerializeField] private GameStateBehaviour _gameStatePrefab;
+        [SerializeField] private LevelsBundle _levelsBundle;
 
         [SerializeField] private SerializableDictionary<ScreenTypes, GameObject> _screensPrefabs;
         [SerializeField] private SerializableDictionary<AudioTypes, GameObject> _audioPrefabs;
@@ -39,6 +40,10 @@ namespace Data
         public GameStateBehaviour GetGameStatePrefab()
         {
             return _gameStatePrefab;
+        }
+        public LevelsBundle GetLevelsBundle()
+        {
+            return _levelsBundle;
         }
 
     }
