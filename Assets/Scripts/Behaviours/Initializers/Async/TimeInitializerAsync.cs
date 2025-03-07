@@ -1,17 +1,17 @@
 ﻿using Helpers;
-using System.Threading.Tasks;
 using Controllers;
+using Cysharp.Threading.Tasks;
 
 namespace Behaviours
 {
     sealed class TimeInitializerAsync : IInitializationAsync
     {
-        public async Task InitializationAsync()
+        public async UniTask InitializationAsync()
         {
             var timeController = new TimeController();
             Services.Instance.TimeController.SetObject(timeController);
 
-            await Task.Yield();
+            await UniTask.Yield();
         }
     }
 }

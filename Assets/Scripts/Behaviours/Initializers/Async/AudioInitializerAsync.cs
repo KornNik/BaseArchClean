@@ -1,14 +1,14 @@
 ﻿using Helpers;
-using System.Threading.Tasks;
 using Controllers;
 using Data;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 namespace Behaviours
 {
     sealed class AudioInitializerAsync : IInitializationAsync
     {
-        public async Task InitializationAsync()
+        public async UniTask InitializationAsync()
         {
             var audioControllerPrefab = Services.Instance.DatasBundle.ServicesObject.
                 GetData<DataResourcePrefabs>().GetAudioPrefab(AudioTypes.AudioController);
@@ -16,7 +16,7 @@ namespace Behaviours
 
             Services.Instance.AudioPlayer.SetObject(audioController);
 
-            await Task.Yield();
+            await UniTask.Yield();
         }
     }
 }

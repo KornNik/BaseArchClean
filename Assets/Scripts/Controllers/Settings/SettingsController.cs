@@ -1,29 +1,27 @@
 ﻿using Behaviours;
 using UnityEngine;
+using Data;
+using Helpers;
 
 namespace Controllers
 {
     class SettingsController : ISettingsController
     {
-        private const int DEFAULT_VSYNC_COUNT = 1;
-        private const int DEFAULT_FRAME_RATE = 60;
-        private const bool DEFAULT_CURSOR_STATE = false;
-        private const CursorLockMode DEFAULT_CURSOR_LOCK_MODE = CursorLockMode.Locked;
+        private DefaultSettingsData _settingsData;
 
         public SettingsController()
         {
-            UnLockedCursor();
-            LockedFPS();
+            _settingsData = Services.Instance.DatasBundle.ServicesObject.GetData<DefaultSettingsData>();
         }
         public void LockedFPS()
         {
-            QualitySettings.vSyncCount = DEFAULT_VSYNC_COUNT;
-            Application.targetFrameRate = DEFAULT_FRAME_RATE;
+            QualitySettings.vSyncCount = _settingsData.VsyncCount;
+            Application.targetFrameRate = _settingsData.FrameRate;
         }
         public void LockedCursor()
         {
-            Cursor.lockState = DEFAULT_CURSOR_LOCK_MODE;
-            Cursor.visible = DEFAULT_CURSOR_STATE;
+            Cursor.lockState = _settingsData.LockMode;
+            Cursor.visible = _settingsData.CursorVisibility;
         }
         public void UnLockedCursor()
         {

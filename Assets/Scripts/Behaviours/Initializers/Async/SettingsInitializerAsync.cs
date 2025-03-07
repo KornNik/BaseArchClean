@@ -1,17 +1,17 @@
 ﻿using Helpers;
-using System.Threading.Tasks;
 using Controllers;
+using Cysharp.Threading.Tasks;
 
 namespace Behaviours
 {
     sealed class SettingsInitializerAsync : IInitializationAsync
     {
-        public async Task InitializationAsync()
+        public async UniTask InitializationAsync()
         {
             var settings = new SettingsController();
             Services.Instance.SettingsController.SetObject(settings);
 
-            await Task.Yield();
+            await UniTask.Yield();
         }
     }
 }

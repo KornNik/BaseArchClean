@@ -1,6 +1,6 @@
-﻿using Data;
+﻿using Cysharp.Threading.Tasks;
+using Data;
 using Helpers;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Behaviours
@@ -9,12 +9,12 @@ namespace Behaviours
     {
         private CamerasInitilaizationData _camerasData;
 
-        public async Task InitializationAsync()
+        public async UniTask InitializationAsync()
         {
             CamerasDataInitialization();
             MainCameraInitialization();
 
-            await Task.Yield();
+            await UniTask.Yield();
         }
 
         private void CamerasDataInitialization()

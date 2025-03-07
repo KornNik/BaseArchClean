@@ -1,25 +1,26 @@
 ﻿using Behaviours;
+using Data;
+using Helpers;
 using UnityEngine;
 
 namespace Controllers
 {
     class TimeController : ITimeController
     {
-        private const float DEFAULT_PAUSE_TIME_VALUE = 0f;
-        private const float DEFAULT_NORMAL_TIME_VALUE = 1f;
+        private DefaultTimeData _timeData;
 
         public TimeController()
         {
-
+            _timeData = Services.Instance.DatasBundle.ServicesObject.GetData<DefaultTimeData>();
         }
 
         public void PauseTime()
         {
-            Time.timeScale = DEFAULT_PAUSE_TIME_VALUE;
+            Time.timeScale = _timeData.PauseTime;
         }
         public void ResumeTime()
         {
-            Time.timeScale = DEFAULT_NORMAL_TIME_VALUE;
+            Time.timeScale = _timeData.NormalTime;
         }
     }
 }

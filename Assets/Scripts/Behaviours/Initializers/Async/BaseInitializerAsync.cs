@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Behaviours
 {
@@ -9,12 +9,12 @@ namespace Behaviours
 
         public List<IInitializationAsync> Initializers => _initializers;
 
-        public async Task InitializationAsync()
+        public async UniTask InitializationAsync()
         {
             FillInitializers();
             await InitializeAsync();
         }
-        public async Task InitializeAsync()
+        public async UniTask InitializeAsync()
         {
             foreach (var initializer in _initializers)
             {

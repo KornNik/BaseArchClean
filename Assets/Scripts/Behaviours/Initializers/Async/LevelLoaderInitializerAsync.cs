@@ -1,15 +1,15 @@
-﻿using Helpers;
-using System.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
+using Helpers;
 
 namespace Behaviours
 {
     sealed class LevelLoaderInitializerAsync : IInitializationAsync
     {
-        public async Task InitializationAsync()
+        public async UniTask InitializationAsync()
         {
             var lelveLoader = new LevelLoader();
             Services.Instance.LevelLoader.SetObject(lelveLoader);
-            await Task.Yield();
+            await UniTask.Yield();
         }
     }
 }
