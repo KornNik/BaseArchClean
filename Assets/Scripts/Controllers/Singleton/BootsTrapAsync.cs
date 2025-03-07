@@ -19,8 +19,6 @@ namespace Controllers
 
             await _systemsInitializer.InitializationAsync();
             await _componentsInitializer.InitializationAsync();
-
-            ChangeGameStateEvent.Trigger(GameStateType.MenuState);
         }
     }
 }
