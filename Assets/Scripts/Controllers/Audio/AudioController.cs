@@ -68,6 +68,10 @@ namespace Controllers
         {
             _audioMixerMuter.Muted = status;
         }
+        public void SetVolume(float volume)
+        {
+            _audioMixerMuter.Volume = volume;
+        }
         public bool IsSoundMuted()
         {
             return _audioMixerMuter.Muted;

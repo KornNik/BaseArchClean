@@ -2,6 +2,7 @@
 using Helpers;
 using Behaviours;
 using Helpers.Extensions;
+using Esper.ESave;
 
 namespace Data
 {
@@ -11,6 +12,7 @@ namespace Data
         [SerializeField] private GameObject _cameraPrefab;
         [SerializeField] private GameStateBehaviour _gameStatePrefab;
         [SerializeField] private LevelsBundle _levelsBundle;
+        [SerializeField] private SaveFileSetup _saveFileSetupPrefab;
 
         [SerializeField] private SerializableDictionary<ScreenTypes, GameObject> _screensPrefabs;
         [SerializeField] private SerializableDictionary<AudioTypes, GameObject> _audioPrefabs;
@@ -45,6 +47,9 @@ namespace Data
         {
             return _levelsBundle;
         }
-
+        public SaveFileSetup GetSaveFileSetupPrefab()
+        {
+            return _saveFileSetupPrefab;
+        }
     }
 }

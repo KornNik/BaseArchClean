@@ -15,6 +15,7 @@ MonoBehaviour:
   _cameraPrefab: {fileID: 1309152332432426233, guid: 7998a00cfb5553e4ab4116fa40208f5d, type: 3}
   _gameStatePrefab: {fileID: 7462832337231848308, guid: 5d6dea1a457761045ad76c64eb767455, type: 3}
   _levelsBundle: {fileID: 11400000, guid: 964a45c24c10e364484133a4be74c56a, type: 2}
+  _saveFileSetupPrefab: {fileID: 9119105868366411437, guid: e83c417c882784e4899e8af97cd50ce2, type: 3}
   _screensPrefabs:
     m_keys: 0100000002000000040000000300000005000000
     m_values:

@@ -1,6 +1,6 @@
 ﻿namespace Helpers
 {
-    static class InputActionManagerPlayer
+    static class InputActionManager
     {
         public const string PLAYER_ACTIONS_MAP = "Player";
         public const string LOOK = "Look";

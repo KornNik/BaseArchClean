@@ -1,5 +1,6 @@
 ﻿using Helpers;
 using Behaviours;
+using Cysharp.Threading.Tasks;
 
 namespace Controllers
 {
@@ -10,9 +11,9 @@ namespace Controllers
 
         private void Start()
         {
-            InitializationComponents();
+            InitializationComponents().Forget();
         }
-        private async void InitializationComponents()
+        private async UniTaskVoid InitializationComponents()
         {
             _systemsInitializer = new SystemInitializerAsync();
             _componentsInitializer = new ComponentInitializerAsync();

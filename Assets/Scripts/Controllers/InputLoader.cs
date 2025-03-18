@@ -16,7 +16,7 @@ namespace Controllers
             _playerActionsAsset = Services.Instance.DatasBundle.ServicesObject.GetData<InputData>().InputActionAsset;
             if (!ReferenceEquals(_playerActionsAsset, null))
             {
-                _playerActionMap = _playerActionsAsset.FindActionMap(InputActionManagerPlayer.PLAYER_ACTIONS_MAP);
+                _playerActionMap = _playerActionsAsset.FindActionMap(InputActionManager.PLAYER_ACTIONS_MAP);
                 if (!ReferenceEquals(_playerActionMap, null))
                 {
                     UnityEngine.Debug.Log("InputsLoaded");
