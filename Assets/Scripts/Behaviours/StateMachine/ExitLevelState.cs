@@ -1,6 +1,6 @@
 ﻿using Helpers;
-using System.Threading.Tasks;
 using System;
+using Cysharp.Threading.Tasks;
 
 namespace Behaviours
 {
@@ -14,17 +14,17 @@ namespace Behaviours
         public override void EnterState()
         {
             base.EnterState();
-            DeleteAll();
+            DeleteAll().Forget();
         }
 
-        private async void DeleteAll()
+        private async UniTaskVoid DeleteAll()
         {
             await LoadTask(DeleteLevel);
         }
-        private async Task LoadTask(Action loadingAction)
+        private async UniTask LoadTask(Action loadingAction)
         {
             loadingAction?.Invoke();
-            await Task.Yield();
+            await UniTask.Yield();
         }
         private void DeleteLevel()
         {

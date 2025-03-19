@@ -1,6 +1,6 @@
 ﻿using Helpers;
-using System.Threading.Tasks;
 using System;
+using Cysharp.Threading.Tasks;
 
 namespace Behaviours
 {
@@ -16,18 +16,18 @@ namespace Behaviours
         public override void EnterState()
         {
             base.EnterState();
-            LoadAll();
+            LoadAll().Forget();
         }
-        private async void LoadAll()
+        private async UniTaskVoid LoadAll()
         {
             await LoadTask(LoadLevelBehaviours);
             await LoadTask(StartGameState);
         }
 
-        private async Task LoadTask(Action loadingAction)
+        private async UniTask LoadTask(Action loadingAction)
         {
             loadingAction?.Invoke();
-            await Task.Yield();
+            await UniTask.Yield();
         }
         private void LoadLevelBehaviours()
         {
