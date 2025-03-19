@@ -2,7 +2,6 @@
 using Data;
 using Helpers;
 using System;
-using UnityEngine;
 
 namespace Behaviours
 {
@@ -32,7 +31,6 @@ namespace Behaviours
         private void UpdateData(SaveData saveData)
         {
             _saveData = saveData;
-            Debug.Log("DataUpdated");
         }
 
         public SaveData SaveData => _saveData;

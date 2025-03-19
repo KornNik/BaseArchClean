@@ -28,8 +28,8 @@ namespace Behaviours
 
         public override void LogicUpdate()
         {
-            var isSave = _inputs.PlayerActionList[InputActionManager.INSPECT].IsPressed();
-            var isLoad = _inputs.PlayerActionList[InputActionManager.INTERACT].IsPressed();
+            var isSave = _inputs.PlayerActionList[InputActionManager.SAVE].IsPressed();
+            var isLoad = _inputs.PlayerActionList[InputActionManager.LOAD].IsPressed();
 
             if (isSave)
             {

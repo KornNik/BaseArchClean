@@ -13,5 +13,7 @@
         public const string RUN = "Run";
         public const string INTERACT = "Interact";
         public const string INSPECT = "Inspect";
+        public const string SAVE = "Save";
+        public const string LOAD = "Load";
     }
 }

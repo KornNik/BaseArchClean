@@ -1,6 +1,4 @@
 ﻿using System;
-using UnityEngine;
-using JetBrains.Annotations;
 using Cysharp.Threading.Tasks;
 using Data;
 using Helpers;
@@ -8,7 +6,8 @@ using Behaviours;
 
 namespace Controllers
 {
-    sealed partial class SaveSystemController : IInitialization, IEventSubscription, IDisposable, IEventListener<SaveEvent>, IEventListener<LoadEvent>
+    sealed partial class SaveSystemController : IInitialization, IEventSubscription,
+        IEventListener<SaveEvent>, IEventListener<LoadEvent>, IDisposable
     {
         private ISaveSystem _saveSystem;
         private SaveDataContainer _saveDataContainer;
@@ -26,23 +25,18 @@ namespace Controllers
 
         public void Initialization()
         {
-            _saveSystem = new SaveSystem
-                (
-                 new NewtonsoftSerializer(),
-                 new FileSystemDataStorage(Application.persistentDataPath, ".ext"),
-                 new SaveDataKeysProvider(),
-                 new TimeStempPorvidor()
-                );
+            _saveSystem = new DefaultSaveSystemFactory().CreateAndReturn();
             _saveDataContainer = new SaveDataContainer();
         }
 
-        private void SaveData([NotNull]ISaveData saveData)
+        private void SaveData()
         {
-            var convertedData = saveData as SaveData;
+            var saveData = _saveDataContainer.SaveData;
             ProcessAsync
                 (
-                () => _saveSystem.SaveAsync(convertedData)
-                ).Forget();
+                () => _saveSystem.SaveAsync(saveData)
+                )
+                .Forget();
         }
         private async UniTaskVoid LoadData()
         {
@@ -52,6 +46,17 @@ namespace Controllers
 
         }
 
+
+        #region Events
+
+        public void OnEventTrigger(SaveEvent eventType)
+        {
+            SaveData();
+        }
+        public void OnEventTrigger(LoadEvent eventType)
+        {
+            LoadData().Forget();
+        }
         public void Subscribe()
         {
             this.EventStartListening<SaveEvent>();
@@ -62,14 +67,9 @@ namespace Controllers
             this.EventStopListening<SaveEvent>();
             this.EventStopListening<LoadEvent>();
         }
-        public void OnEventTrigger(SaveEvent eventType)
-        {
-            SaveData(_saveDataContainer.SaveData);
-        }
 
-        public void OnEventTrigger(LoadEvent eventType)
-        {
-            LoadData().Forget();
-        }
+        #endregion
+
+
     }
 }

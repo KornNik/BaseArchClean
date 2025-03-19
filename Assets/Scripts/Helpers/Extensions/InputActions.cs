@@ -26,6 +26,8 @@ namespace Helpers.Extensions
             _playerActionList.Add(InputActionManager.RELOAD, playerActionMap.FindAction(InputActionManager.RELOAD));
             _playerActionList.Add(InputActionManager.HOLSTER, playerActionMap.FindAction(InputActionManager.HOLSTER));
             _playerActionList.Add(InputActionManager.RUN, playerActionMap.FindAction(InputActionManager.RUN));
+            _playerActionList.Add(InputActionManager.SAVE, playerActionMap.FindAction(InputActionManager.SAVE));
+            _playerActionList.Add(InputActionManager.LOAD, playerActionMap.FindAction(InputActionManager.LOAD));
         }
     }
 }
