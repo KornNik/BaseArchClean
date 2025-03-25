@@ -1,20 +1,16 @@
 ﻿using Helpers;
 using Controllers;
-using Data;
-using UnityEngine;
 using Cysharp.Threading.Tasks;
 
 namespace Behaviours
 {
-    sealed class AudioInitializerAsync : IInitializationAsync
+    sealed class AudioInitializerAsync : BaseAddressablesInstanceInitializer
     {
-        public async UniTask InitializationAsync()
+        public override async UniTask InitializationAsync()
         {
-            var audioControllerPrefab = Services.Instance.DatasBundle.ServicesObject.
-                GetData<DataResourcePrefabs>().GetAudioPrefab(AudioTypes.AudioController);
-            var audioController = GameObject.Instantiate(audioControllerPrefab).GetComponent<AudioController>();
-
-            Services.Instance.AudioPlayer.SetObject(audioController);
+            var result = await AddressablesInstance<AudioController>
+                (Services.Instance.AddressablesReference.ServicesObject.
+                GetAudioRef(AudioTypes.AudioController));
 
             await UniTask.Yield();
         }

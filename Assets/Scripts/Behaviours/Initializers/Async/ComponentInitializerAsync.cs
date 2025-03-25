@@ -4,6 +4,7 @@
     {
         protected override void FillInitializers()
         {
+            Initializers.Add(new AudioInitializerAsync());
             Initializers.Add(new CameraInitializerAsync());
             Initializers.Add(new LevelLoaderInitializerAsync());
             Initializers.Add(new GameStateInitializerAsync());

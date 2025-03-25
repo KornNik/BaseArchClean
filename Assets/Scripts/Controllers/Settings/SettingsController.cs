@@ -12,6 +12,7 @@ namespace Controllers
         public SettingsController()
         {
             _settingsData = Services.Instance.DatasBundle.ServicesObject.GetData<DefaultSettingsData>();
+            LockedFPS();
         }
         public void LockedFPS()
         {

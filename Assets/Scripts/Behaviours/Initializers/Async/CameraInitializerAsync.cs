@@ -5,14 +5,17 @@ using UnityEngine;
 
 namespace Behaviours
 {
-    sealed class CameraInitializerAsync : IInitializationAsync
+    sealed class CameraInitializerAsync : BaseAddressablesInstanceInitializer
     {
         private CamerasInitilaizationData _camerasData;
 
-        public async UniTask InitializationAsync()
+        public override async UniTask InitializationAsync()
         {
             CamerasDataInitialization();
-            MainCameraInitialization();
+
+            var result = await AddressablesInstance<Camera>
+                (Services.Instance.AddressablesReference.ServicesObject.
+                GetCamerRef());
 
             await UniTask.Yield();
         }
@@ -21,13 +24,6 @@ namespace Behaviours
         {
             var dataResources = Services.Instance.DatasBundle.ServicesObject.GetData<CamerasInitilaizationData>();
             _camerasData = dataResources;
-        }
-        private void MainCameraInitialization()
-        {
-            var mainCameraResource = Services.Instance.DatasBundle.ServicesObject.GetData<DataResourcePrefabs>().GetCamerPrefab();
-            var mainCameraObject = GameObject.Instantiate(mainCameraResource, _camerasData.GetMainCameraPosition(), Quaternion.identity).GetComponent<Camera>();
-
-            Services.Instance.CameraService.SetObject(mainCameraObject);
         }
     }
 }

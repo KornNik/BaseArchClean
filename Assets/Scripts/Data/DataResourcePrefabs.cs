@@ -45,6 +45,5 @@ namespace Data
         {
             return _levelsBundle;
         }
-
     }
 }

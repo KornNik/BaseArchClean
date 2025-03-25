@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d31a3341f3e62c42b883dff03c0c59c, type: 3}
-  m_Name: FirstLevel
+  m_Script: {fileID: 11500000, guid: b1487f5d688e4f94f828f879d599dbdc, type: 3}
+  m_Name: Built In Data_PlayerDataGroupSchema
   m_EditorClassIdentifier: 
-  _name: First
-  _levelRef:
-    m_AssetGUID: 149d3adf10afbfe479ae58ae0340a703
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  _levelPosition: {x: 0, y: 0, z: 0}
+  m_Group: {fileID: 11400000, guid: 813875ca13bad8244ab485bf81bb2f71, type: 2}
+  m_IncludeResourcesFolders: 1
+  m_IncludeBuildSettingsScenes: 1

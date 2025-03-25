@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d33e53a73b15e1438b43b40cd1f8ee8, type: 3}
+  m_Name: AddressablesData
+  m_EditorClassIdentifier: 
+  _cameraPrefab:
+    m_AssetGUID: 7998a00cfb5553e4ab4116fa40208f5d
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  _gameStatePrefab:
+    m_AssetGUID: 5d6dea1a457761045ad76c64eb767455
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  _levelsBundle: {fileID: 11400000, guid: 964a45c24c10e364484133a4be74c56a, type: 2}
+  _screensPrefabs:
+    m_keys: 01000000020000000300000004000000
+    m_values:
+    - m_AssetGUID: 20a01256c8dea064185f2c0fe2ca5e33
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    - m_AssetGUID: 491ad64f4e8cbbf45b359bf5fb6e0c6f
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    - m_AssetGUID: 5c3c67f6a1d72c44681dcc5ce032aba8
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    - m_AssetGUID: f9f4f3b8f84a68e478c95d6f6d7cdf40
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 1
+  _audioPrefabs:
+    m_keys: 030000000100000002000000
+    m_values:
+    - m_AssetGUID: 882b96383c63526458fe8ea5e79f466d
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    - m_AssetGUID: a07c80804ebc4b04ca22c4b2efc3d9da
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    - m_AssetGUID: eb0ac2a9f80d769419a44a67b2264a48
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 1

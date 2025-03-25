@@ -21,6 +21,7 @@ namespace Helpers
         public Service<GameStateBehaviour> GameStateBehavior { get; private set; }
         public Service<ISettingsController> SettingsController { get; private set; }
         public Service<DataResourcePrefabs> DataResourcePrefabs { get; private set; }
+        public Service<AddressablesReferenceData>AddressablesReference { get; private set; }
 
         public Services()
         {
@@ -38,6 +39,7 @@ namespace Helpers
             GameStateBehavior = new Service<GameStateBehaviour>();
             SettingsController = new Service<ISettingsController>();
             DataResourcePrefabs = new Service<DataResourcePrefabs>();
+            AddressablesReference = new Service<AddressablesReferenceData>();
         }
 
     }

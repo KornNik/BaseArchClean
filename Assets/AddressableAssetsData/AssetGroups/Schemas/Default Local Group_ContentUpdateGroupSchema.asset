@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d31a3341f3e62c42b883dff03c0c59c, type: 3}
-  m_Name: FirstLevel
+  m_Script: {fileID: 11500000, guid: 5834b5087d578d24c926ce20cd31e6d6, type: 3}
+  m_Name: Default Local Group_ContentUpdateGroupSchema
   m_EditorClassIdentifier: 
-  _name: First
-  _levelRef:
-    m_AssetGUID: 149d3adf10afbfe479ae58ae0340a703
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  _levelPosition: {x: 0, y: 0, z: 0}
+  m_Group: {fileID: 11400000, guid: ce63ce75d84720d4b9e5bf7eeba6330f, type: 2}
+  m_StaticContent: 0

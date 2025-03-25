@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace Data
 {
@@ -6,10 +7,10 @@ namespace Data
     class LevelData : ScriptableObject
     {
         [SerializeField] private string _name;
-        [SerializeField] private GameObject _levelPrefab;
+        [SerializeField] private AssetReference _levelRef;
         [SerializeField] private Vector3 _levelPosition;
 
-        public GameObject LevelPrefab => _levelPrefab;
+        public AssetReference LevelReference => _levelRef;
         public Vector3 LevelPosition => _levelPosition;
         public string Name => _name;
     }

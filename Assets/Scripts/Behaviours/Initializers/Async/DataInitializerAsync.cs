@@ -15,6 +15,7 @@ namespace Behaviours
             _datasBundle = CustomResources.Load<DatasBundle>(DatasAssetPath.DatasPath[DataTypes.BundleData]);
             Services.Instance.DatasBundle.SetObject(_datasBundle);
             Services.Instance.DataResourcePrefabs.SetObject(_datasBundle.GetData<DataResourcePrefabs>());
+            Services.Instance.AddressablesReference.SetObject(_datasBundle.GetData<AddressablesReferenceData>());
 
             await UniTask.Yield();
         }

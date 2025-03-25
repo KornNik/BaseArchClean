@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using Helpers;
 using Data;
+using Cysharp.Threading.Tasks;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace UI
 {
@@ -58,12 +61,33 @@ namespace UI
         {
             if (_loadingScreen == null)
             {
-                var resources = Services.Instance.DatasBundle.ServicesObject.
-                    GetData<DataResourcePrefabs>().GetScreenPrefab(ScreenTypes.LoadingScreen);
+                var resources = Services.Instance.DataResourcePrefabs.ServicesObject.
+                    GetScreenPrefab(ScreenTypes.LoadingScreen);
                 _loadingScreen = Object.Instantiate(resources, _canvas.transform.position,
                     Quaternion.identity, _canvas.transform).GetComponent<LoadingScreen>();
             }
             return _loadingScreen;
+        }
+
+        private async UniTask<TScreen> ReturnScreen<TScreen>()
+        {
+            var screen = LoadScreenObject<TScreen>
+                    (Services.Instance.AddressablesReference.ServicesObject.
+                    GetScreenRef(ScreenTypes.LoadingScreen));
+            return await screen;
+        }
+
+        private async UniTask<TScreen> LoadScreenObject<TScreen>(AssetReference assetReference)
+        {
+            var loadablePrefab = assetReference;
+            var handle = Addressables.InstantiateAsync(loadablePrefab);
+            await handle.ToUniTask();
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                var neededScreen = handle.Result.GetComponent<TScreen>();
+                return  neededScreen;
+            }
+            throw new System.NullReferenceException();
         }
     }
 }

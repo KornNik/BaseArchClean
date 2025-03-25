@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: e9312c56d648e944ea672b7853b80789
+  m_SerializeEntries:
+  - m_GUID: 5d6dea1a457761045ad76c64eb767455
+    m_Address: GameState
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 491ad64f4e8cbbf45b359bf5fb6e0c6f
+    m_Address: Prefabs_UI_MainMenu
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7998a00cfb5553e4ab4116fa40208f5d
+    m_Address: Prefabs_Cameras_MainCamera
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f9f4f3b8f84a68e478c95d6f6d7cdf40
+    m_Address: Prefabs_UI_GameMenu
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f96b69de8372d4245b128078d4f6f60f
+    m_Address: Prefabs_UI_LoadingScreen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5c3c67f6a1d72c44681dcc5ce032aba8
+    m_Address: Prefabs_UI_PauseMenu
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 20a01256c8dea064185f2c0fe2ca5e33
+    m_Address: Prefabs_UI_Canvas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 882b96383c63526458fe8ea5e79f466d
+    m_Address: AudioController
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eb0ac2a9f80d769419a44a67b2264a48
+    m_Address: AudioSourceBackground
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a07c80804ebc4b04ca22c4b2efc3d9da
+    m_Address: AudioSourcePrefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 149d3adf10afbfe479ae58ae0340a703
+    m_Address: TestLevel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f625e6b239b58644199cbeb9aaab3c75, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: dc4060c6cd5198f45b01b2c2aaa429f1, type: 2}
+    - {fileID: 11400000, guid: a4ea8907d1b58bd498d16bd6c4fb845e, type: 2}
