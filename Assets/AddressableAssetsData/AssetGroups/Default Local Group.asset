@@ -22,36 +22,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 491ad64f4e8cbbf45b359bf5fb6e0c6f
-    m_Address: Prefabs_UI_MainMenu
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7998a00cfb5553e4ab4116fa40208f5d
-    m_Address: Prefabs_Cameras_MainCamera
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f9f4f3b8f84a68e478c95d6f6d7cdf40
-    m_Address: Prefabs_UI_GameMenu
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f96b69de8372d4245b128078d4f6f60f
-    m_Address: Prefabs_UI_LoadingScreen
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5c3c67f6a1d72c44681dcc5ce032aba8
-    m_Address: Prefabs_UI_PauseMenu
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 20a01256c8dea064185f2c0fe2ca5e33
-    m_Address: Prefabs_UI_Canvas
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 882b96383c63526458fe8ea5e79f466d
     m_Address: AudioController
     m_ReadOnly: 0

@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
 using Helpers;
 using Data;
-using Cysharp.Threading.Tasks;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace UI
 {
@@ -15,22 +12,22 @@ namespace UI
         private PauseMenu _pauseMenu;
         private LoadingScreen _loadingScreen;
 
+        private ScreenToType _screenToType;
+
 
         public ScreenFactory()
         {
+            _screenToType = new ScreenToType();
             var resources = Services.Instance.DatasBundle.ServicesObject.
                 GetData<DataResourcePrefabs>().GetScreenPrefab(ScreenTypes.Canvas);
-            _canvas = Object.Instantiate(resources, Vector3.one, Quaternion.identity).GetComponent<Canvas>();
+            _canvas = GameObject.Instantiate(resources, Vector3.one, Quaternion.identity).GetComponent<Canvas>();
         }
 
         public GameMenu GetGameMenu()
         {
             if (_gameMenu == null)
             {
-                var resources = Services.Instance.DatasBundle.ServicesObject.
-                    GetData<DataResourcePrefabs>().GetScreenPrefab(ScreenTypes.GameMenu);
-                _gameMenu = Object.Instantiate(resources, _canvas.transform.position,
-                    Quaternion.identity, _canvas.transform).GetComponent<GameMenu>();
+                _gameMenu  = ReturnScreen<GameMenu>();
             }
             return _gameMenu;
         }
@@ -39,10 +36,7 @@ namespace UI
         {
             if (_mainMenu == null)
             {
-                var resources = Services.Instance.DatasBundle.ServicesObject.
-                    GetData<DataResourcePrefabs>().GetScreenPrefab(ScreenTypes.MainMenu);
-                _mainMenu = Object.Instantiate(resources, _canvas.transform.position,
-                    Quaternion.identity, _canvas.transform).GetComponent<MainMenu>();
+                _mainMenu = ReturnScreen<MainMenu>();
             }
             return _mainMenu;
         }
@@ -50,10 +44,7 @@ namespace UI
         {
             if (_pauseMenu == null)
             {
-                var resources = Services.Instance.DatasBundle.ServicesObject.
-                    GetData<DataResourcePrefabs>().GetScreenPrefab(ScreenTypes.PauseMenu);
-                _pauseMenu = Object.Instantiate(resources, _canvas.transform.position,
-                    Quaternion.identity, _canvas.transform).GetComponent<PauseMenu>();
+                _pauseMenu = ReturnScreen<PauseMenu>();
             }
             return _pauseMenu;
         }
@@ -61,33 +52,18 @@ namespace UI
         {
             if (_loadingScreen == null)
             {
-                var resources = Services.Instance.DataResourcePrefabs.ServicesObject.
-                    GetScreenPrefab(ScreenTypes.LoadingScreen);
-                _loadingScreen = Object.Instantiate(resources, _canvas.transform.position,
-                    Quaternion.identity, _canvas.transform).GetComponent<LoadingScreen>();
+                _loadingScreen = ReturnScreen<LoadingScreen>();
             }
             return _loadingScreen;
         }
 
-        private async UniTask<TScreen> ReturnScreen<TScreen>()
+        private TScreen ReturnScreen<TScreen>()
         {
-            var screen = LoadScreenObject<TScreen>
-                    (Services.Instance.AddressablesReference.ServicesObject.
-                    GetScreenRef(ScreenTypes.LoadingScreen));
-            return await screen;
-        }
-
-        private async UniTask<TScreen> LoadScreenObject<TScreen>(AssetReference assetReference)
-        {
-            var loadablePrefab = assetReference;
-            var handle = Addressables.InstantiateAsync(loadablePrefab);
-            await handle.ToUniTask();
-            if (handle.Status == AsyncOperationStatus.Succeeded)
-            {
-                var neededScreen = handle.Result.GetComponent<TScreen>();
-                return  neededScreen;
-            }
-            throw new System.NullReferenceException();
+            var screenRes = Services.Instance.DataResourcePrefabs.ServicesObject.
+                GetScreenPrefab(_screenToType.Provide<TScreen>());
+            var screen = GameObject.Instantiate(screenRes, _canvas.transform.position,
+                    Quaternion.identity, _canvas.transform).GetComponent<TScreen>();
+            return screen;
         }
     }
 }
