@@ -7,7 +7,7 @@ namespace Behaviours
     {
         public async UniTask InitializationAsync()
         {
-            var inputController = new InputLoader();
+            //var inputLoader = new InputLoader();
 
             await UniTask.Yield();
         }

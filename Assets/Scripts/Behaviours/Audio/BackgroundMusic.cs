@@ -8,9 +8,9 @@ namespace Behaviours
     {
         private AudioSource _audioSource;
 
-        public BackgroundMusic()
+        public BackgroundMusic(DataResourcePrefabs dataResource)
         {
-            Initialize();
+            Initialize(dataResource);
             Configure();
         }
         public BackgroundMusic(AudioSource audioSource)
@@ -34,10 +34,9 @@ namespace Behaviours
             _audioSource.clip = null;
         }
 
-        private void Initialize()
+        private void Initialize(DataResourcePrefabs dataResource)
         {
-            var audioSourcePrefab = Services.Instance.DatasBundle.ServicesObject.
-                GetData<DataResourcePrefabs>().GetAudioPrefab
+            var audioSourcePrefab = dataResource.GetAudioPrefab
                 (AudioTypes.BackgroundSourcePrefab).GetComponent<AudioSource>();
             _audioSource = GameObject.Instantiate(audioSourcePrefab, Vector3.zero, Quaternion.identity);
         }

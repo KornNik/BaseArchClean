@@ -7,8 +7,8 @@ namespace Behaviours
     {
         public void Initialization()
         {
-            var settings = new SettingsController();
-            Services.Instance.SettingsController.SetObject(settings);
+            //var settings = new SettingsController();
+            //Services.Instance.SettingsController.SetObject(settings);
         }
     }
 }

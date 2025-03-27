@@ -8,8 +8,8 @@ namespace Behaviours
     {
         public async UniTask InitializationAsync()
         {
-            var timeController = new TimeController();
-            Services.Instance.TimeController.SetObject(timeController);
+            //var timeController = new TimeController();
+            //Services.Instance.TimeController.SetObject(timeController);
 
             await UniTask.Yield();
         }

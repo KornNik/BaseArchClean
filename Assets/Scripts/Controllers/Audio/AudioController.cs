@@ -2,6 +2,7 @@
 using Behaviours;
 using Helpers;
 using Data;
+using Zenject;
 
 namespace Controllers
 {
@@ -29,13 +30,20 @@ namespace Controllers
             _eventSubscriptionWrapper.Unsubscribe();
         }
 
+        [Inject]
+        private void Construct(DatasBundle datasBundle)
+        {
+            Debug.Log("ConstructAudio");
+            var dataResourcePrefabs = datasBundle.GetData<DataResourcePrefabs>();
+
+            _audioMixerMuter = datasBundle.GetData<AudioMixerVolumeMuter>();
+
+            _audioSourcePool = new AudioSourcePool(dataResourcePrefabs);
+            _backgroundMusic = new BackgroundMusic(dataResourcePrefabs);
+        }
+
         private void Initialize()
         {
-            _audioMixerMuter = Services.Instance.DatasBundle.ServicesObject.
-                GetData<AudioMixerVolumeMuter>();
-
-            _audioSourcePool = new AudioSourcePool();
-            _backgroundMusic = new BackgroundMusic();
             _audioEventsHandler = new AudioEventsHandler(this);
             _eventSubscriptionWrapper = new EventSubscriptionWraper();
         }

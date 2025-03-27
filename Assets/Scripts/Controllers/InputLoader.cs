@@ -2,10 +2,14 @@
 using Helpers;
 using Helpers.Extensions;
 using Data;
+using System;
+using UnityEngine;
+using Zenject;
+
 
 namespace Controllers
 {
-    internal class InputLoader
+    sealed class InputLoader
     {
         private InputActionAsset _playerActionsAsset;
         private InputActionMap _playerActionMap;
@@ -13,19 +17,28 @@ namespace Controllers
 
         public InputLoader()
         {
-            _playerActionsAsset = Services.Instance.DatasBundle.ServicesObject.GetData<InputData>().InputActionAsset;
-            if (!ReferenceEquals(_playerActionsAsset, null))
+
+        }
+        [Inject]
+        private void Construct(DatasBundle datasBundle)
+        {
+            _playerActionsAsset = datasBundle.GetData<InputData>().InputActionAsset;
+            InitializeInputs();
+        }
+
+        private void InitializeInputs()
+        {
+            try
             {
                 _playerActionMap = _playerActionsAsset.FindActionMap(InputActionManagerPlayer.PLAYER_ACTIONS_MAP);
-                if (!ReferenceEquals(_playerActionMap, null))
-                {
-                    UnityEngine.Debug.Log("InputsLoaded");
-                    _inputActions = new InputActions(_playerActionMap);
-                    Services.Instance.Inputs.SetObject(_inputActions);
-                }
-                else { throw new System.Exception($"{this.GetType()} try to use _playerActionMap but reference is null"); }
+                UnityEngine.Debug.Log("InputsLoaded");
+                _inputActions = new InputActions(_playerActionMap);
+                Services.Instance.Inputs.SetObject(_inputActions);
             }
-            else { throw new System.Exception($"{this.GetType()} try to use player action asset but reference is null"); }
+            catch (NullReferenceException exc)
+            {
+                Debug.LogError(exc.ToString());
+            }
         }
     }
 }

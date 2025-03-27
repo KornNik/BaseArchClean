@@ -10,9 +10,9 @@ namespace Behaviours
 
         public async UniTask InitializationAsync()
         {
-            var gameStatePrefab = Services.Instance.DatasBundle.ServicesObject.GetData<DataResourcePrefabs>().GetGameStatePrefab();
-            var gameState = GameObject.Instantiate(gameStatePrefab).GetComponent<GameStateBehaviour>();
-            Services.Instance.GameStateBehavior.SetObject(gameState);
+            //var gameStatePrefab = Services.Instance.DatasBundle.ServicesObject.GetData<DataResourcePrefabs>().GetGameStatePrefab();
+            //var gameState = GameObject.Instantiate(gameStatePrefab).GetComponent<GameStateBehaviour>();
+            //Services.Instance.GameStateBehavior.SetObject(gameState);
 
             await UniTask.Yield();
         }

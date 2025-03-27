@@ -2,6 +2,7 @@
 using Data;
 using Helpers;
 using UnityEngine;
+using Zenject;
 
 namespace Controllers
 {
@@ -11,7 +12,12 @@ namespace Controllers
 
         public TimeController()
         {
-            _timeData = Services.Instance.DatasBundle.ServicesObject.GetData<DefaultTimeData>();
+
+        }
+        [Inject]
+        private void Construct(DatasBundle datasBundle)
+        {
+            _timeData = datasBundle.GetData<DefaultTimeData>();
         }
 
         public void PauseTime()

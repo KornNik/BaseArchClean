@@ -7,8 +7,8 @@ namespace Behaviours
     {
         public async UniTask InitializationAsync()
         {
-            var lelveLoader = new LevelLoader();
-            Services.Instance.LevelLoader.SetObject(lelveLoader);
+            //var lelveLoader = new LevelLoader();
+            //Services.Instance.LevelLoader.SetObject(lelveLoader);
             await UniTask.Yield();
         }
     }

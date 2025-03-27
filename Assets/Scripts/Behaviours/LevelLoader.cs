@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Data;
 using Helpers;
+using Zenject;
 
 namespace Behaviours
 {
@@ -14,7 +15,13 @@ namespace Behaviours
 
         public LevelLoader()
         {
-            _levelsBundle = Services.Instance.DataResourcePrefabs.ServicesObject.GetLevelsBundle();
+
+        }
+
+        [Inject]
+        private void Construct(DatasBundle datasBundle)
+        {
+            _levelsBundle = datasBundle.GetData<LevelsBundle>();
         }
 
         public void LoadLevelByIndex(int index)

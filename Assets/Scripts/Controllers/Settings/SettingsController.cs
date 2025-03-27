@@ -1,7 +1,7 @@
 ﻿using Behaviours;
 using UnityEngine;
 using Data;
-using Helpers;
+using Zenject;
 
 namespace Controllers
 {
@@ -11,7 +11,13 @@ namespace Controllers
 
         public SettingsController()
         {
-            _settingsData = Services.Instance.DatasBundle.ServicesObject.GetData<DefaultSettingsData>();
+
+        }
+        [Inject]
+        private void Construct(DatasBundle datasBundle)
+        {
+            _settingsData = datasBundle.GetData<DefaultSettingsData>();
+            LockedFPS();
         }
         public void LockedFPS()
         {

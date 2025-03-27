@@ -10,11 +10,11 @@ namespace Behaviours
     {
         public async UniTask InitializationAsync()
         {
-            var audioControllerPrefab = Services.Instance.DatasBundle.ServicesObject.
-                GetData<DataResourcePrefabs>().GetAudioPrefab(AudioTypes.AudioController);
-            var audioController = GameObject.Instantiate(audioControllerPrefab).GetComponent<AudioController>();
+            //var audioControllerPrefab = Services.Instance.DatasBundle.ServicesObject.
+            //    GetData<DataResourcePrefabs>().GetAudioPrefab(AudioTypes.AudioController);
+            //var audioController = GameObject.Instantiate(audioControllerPrefab).GetComponent<AudioController>();
 
-            Services.Instance.AudioPlayer.SetObject(audioController);
+            //Services.Instance.AudioPlayer.SetObject(audioController);
 
             await UniTask.Yield();
         }

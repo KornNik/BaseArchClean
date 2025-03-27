@@ -15,11 +15,11 @@ namespace Behaviours
 
         private int _lastCheckFrame = -1;
 
-        public AudioSourcePool()
+        public AudioSourcePool(DataResourcePrefabs dataResource)
         {
-            _prefab = Services.Instance.DatasBundle.ServicesObject.
-                GetData<DataResourcePrefabs>().GetAudioPrefab
-                (AudioTypes.PoolableSourcePrefab).GetComponent<AudioSource>();
+            _prefab = dataResource.
+                GetAudioPrefab(AudioTypes.PoolableSourcePrefab).
+                GetComponent<AudioSource>();
         }
         public AudioSourcePool(AudioSource prefab)
         {

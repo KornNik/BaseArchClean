@@ -12,20 +12,21 @@ namespace UI
         private PauseMenu _pauseMenu;
         private LoadingScreen _loadingScreen;
 
+        private DataResourcePrefabs _dataResource;
 
         public ScreenFactory()
         {
-            var resources = Services.Instance.DatasBundle.ServicesObject.
-                GetData<DataResourcePrefabs>().GetScreenPrefab(ScreenTypes.Canvas);
-            _canvas = Object.Instantiate(resources, Vector3.one, Quaternion.identity).GetComponent<Canvas>();
+            _dataResource = Services.Instance.DataResourcePrefabs.ServicesObject;
+
+            var canvasRes = _dataResource.GetScreenPrefab(ScreenTypes.Canvas);
+            _canvas = Object.Instantiate(canvasRes, Vector3.one, Quaternion.identity).GetComponent<Canvas>();
         }
 
         public GameMenu GetGameMenu()
         {
             if (_gameMenu == null)
             {
-                var resources = Services.Instance.DatasBundle.ServicesObject.
-                    GetData<DataResourcePrefabs>().GetScreenPrefab(ScreenTypes.GameMenu);
+                var resources = _dataResource.GetScreenPrefab(ScreenTypes.GameMenu);
                 _gameMenu = Object.Instantiate(resources, _canvas.transform.position,
                     Quaternion.identity, _canvas.transform).GetComponent<GameMenu>();
             }
@@ -36,8 +37,7 @@ namespace UI
         {
             if (_mainMenu == null)
             {
-                var resources = Services.Instance.DatasBundle.ServicesObject.
-                    GetData<DataResourcePrefabs>().GetScreenPrefab(ScreenTypes.MainMenu);
+                var resources = _dataResource.GetScreenPrefab(ScreenTypes.MainMenu);
                 _mainMenu = Object.Instantiate(resources, _canvas.transform.position,
                     Quaternion.identity, _canvas.transform).GetComponent<MainMenu>();
             }
@@ -47,8 +47,7 @@ namespace UI
         {
             if (_pauseMenu == null)
             {
-                var resources = Services.Instance.DatasBundle.ServicesObject.
-                    GetData<DataResourcePrefabs>().GetScreenPrefab(ScreenTypes.PauseMenu);
+                var resources = _dataResource.GetScreenPrefab(ScreenTypes.PauseMenu);
                 _pauseMenu = Object.Instantiate(resources, _canvas.transform.position,
                     Quaternion.identity, _canvas.transform).GetComponent<PauseMenu>();
             }
@@ -58,8 +57,7 @@ namespace UI
         {
             if (_loadingScreen == null)
             {
-                var resources = Services.Instance.DatasBundle.ServicesObject.
-                    GetData<DataResourcePrefabs>().GetScreenPrefab(ScreenTypes.LoadingScreen);
+                var resources = _dataResource.GetScreenPrefab(ScreenTypes.LoadingScreen);
                 _loadingScreen = Object.Instantiate(resources, _canvas.transform.position,
                     Quaternion.identity, _canvas.transform).GetComponent<LoadingScreen>();
             }
