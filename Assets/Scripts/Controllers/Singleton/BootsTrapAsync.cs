@@ -17,7 +17,6 @@ namespace Controllers
         {
             _systemsInitializer = new SystemInitializerAsync();
             _componentsInitializer = new ComponentInitializerAsync();
-
             await _systemsInitializer.InitializationAsync();
             await _componentsInitializer.InitializationAsync();
         }

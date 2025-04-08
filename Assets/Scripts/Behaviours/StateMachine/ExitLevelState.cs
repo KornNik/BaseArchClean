@@ -1,6 +1,7 @@
 ﻿using Helpers;
 using System;
 using Cysharp.Threading.Tasks;
+using UI;
 
 namespace Behaviours
 {
@@ -14,6 +15,7 @@ namespace Behaviours
         public override void EnterState()
         {
             base.EnterState();
+            ScreenInterface.GetInstance().Execute(Helpers.ScreenTypes.LoadingScreen);
             DeleteAll().Forget();
         }
 

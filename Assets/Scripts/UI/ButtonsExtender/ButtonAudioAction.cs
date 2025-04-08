@@ -4,7 +4,7 @@ using UnityEngine;
 namespace UI
 {
     [CreateAssetMenu(fileName = "ButtonAudioAction", menuName = "Data/Buttons/ButtonAudioAction")]
-    class ButtonAudioAction: ButtonExtenderAction, IBtnExtenderAction
+    class ButtonAudioAction: ButtonExtenderAction
     {
         [SerializeField] private AudioClip _clickClip;
 
